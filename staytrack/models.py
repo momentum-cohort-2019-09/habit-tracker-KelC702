@@ -11,14 +11,17 @@ class User(AbstractUser):
 class Activity(models.Model):
     name = models.CharField(max_length=100)
     goal = models.CharField(max_length=100)
-    user = models.TextField(blank=True, null=True)
+    user = models.TextField(models.ForeignKey(
+        to=User,
+        on_delete=models.CASCADE,
+        related_name='user')
 
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    created_at=models.DateTimeField(auto_now_add=True)
+    updated_at=models.DateTimeField(auto_now=True)
 
 
 class ActivityRecord(models.Model):
-    record = models.TextField()
+    record=models.TextField()
 
-    created_at = models.DateField(auto_now_add=True)
-    updated_at = models.DateField(auto_now=True)
+    created_at=models.DateField(auto_now_add=True)
+    updated_at=models.DateField(auto_now=True)
